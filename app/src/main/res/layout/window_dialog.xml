@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/menu4"
+    android:weightSum="1">
+
+
+    <TextView
+        android:text="@string/window_dialog"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:textSize="@dimen/place_autocomplete_powered_by_google_height"
+        android:textColor="#FFFFFFFF"/>
+
+    <TextView
+        android:text="@string/textviev_about_as"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:padding="15dp"
+        android:paddingTop="20dp"
+        android:textColor="#FFFFFFFF"
+        android:textSize="15dp"/>
+
+</LinearLayout>

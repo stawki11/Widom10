@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        android:background="@drawable/background"
+        <item
+            android:id="@+id/nav_widom_list"
+            android:icon="@drawable/ic_autorenew_black_24dp"
+            android:title="@string/nav_widom_list" />
+        <item
+            android:id="@+id/nav_add_task"
+            android:icon="@drawable/ic_add_task"
+            android:title="@string/nav_add_task" />
+        <item
+            android:id="@+id/nav_chat"
+            android:icon="@drawable/ic_border_color_black_24dp"
+            android:title="@string/nav_chat" />
+        <item
+            android:id="@+id/nav_map"
+            android:icon="@drawable/ic_map_black_24dp"
+            android:title="@string/nav_map" />
+        <item
+            android:id="@+id/nav_contact"
+            android:icon="@drawable/ic_call_contact"
+            android:title="@string/nav_contact" />
+    </group>
+
+    <item android:title="Help">
+        <menu>
+            <item
+                android:id="@+id/nav_about_us"
+                android:icon="@drawable/ic_mood_black_24dp"
+                android:title="@string/nav_about_us" />
+</menu>
+    </item>
+
+</menu>

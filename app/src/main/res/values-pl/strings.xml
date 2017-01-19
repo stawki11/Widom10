@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">"Widom "</string>
+    <string name="action_settings">Ustawienia</string>
+    <string name="login">Zaloguj się</string>
+    <string name="sign_up_here">Zarejestruj się tutaj!</string>
+    <string name="enter_your_password">Wprowadź hasło</string>
+    <string name="enter_your_e_mail">Wprowadź adres e-mail</string>
+    <string name="title_activity_register">Zarejestruj</string>
+    <string name="user_registration">Nazwa użytkownika</string>
+    <string name="enter_email">Wprowadź adres e-mail</string>
+    <string name="enter_password">Wprowadź hasło</string>
+    <string name="sign_up">Zarejestruj się</string>
+    <string name="title_activity_widom_list">Widom</string>
+    <string name="navigation_drawer_open">Otwórz menu nawigacyjne</string>
+    <string name="nav_widom_list">Widom lista zadań</string>
+    <string name="nav_add_task">Dodaj zadanie</string>
+    <string name="nav_chat">Czat</string>
+    <string name="nav_map">Mapa</string>
+    <string name="nav_contact">Kontakty</string>
+    <string name="nav_about_us">O nas</string>
+    <string name="navigation_drawer_close">Zamknij menu nawigacyjne</string>
+    <string name="title_activity_add_widom">Dodaj zadanie</string>
+    <string name="done">Wykonane</string>
+    <string name="add_task">Dodaj zadanie</string>
+    <string name="delete_task">Usuń</string>
+    <string name="example_task">Przykład</string>
+    <string name="show_token">Pokaz token</string>
+    <string name="title_activity_notifications">Notyfikacje</string>
+    <string name="title_activity_chat_main">Chat - główne okno</string>
+    <string name="title_activity_chat_room">Chat - pokój</string>
+    <string name="title_activity_maps">Mapy</string>
+    <string name="action_bar_refresh">Odśwież</string>
+    <string name="action_bar_add_task">Dodaj zadanie</string>
+    <string name="action_bar_logaut">Wyloguj</string>
+    <string name="action_bar_exit">Zamknij</string>
+    <string name="action_dialog_exit">Czy chcesz zamknąć aplikację?</string>
+    <string name="action_dialog_yes">Tak</string>
+    <string name="action_dialog_no">Anuluj</string>
+    <string name="action_add_new_task_title">Dodaj nowe zadanie</string>
+    <string name="action_add_new_task_message">Co chcesz zrobić później?</string>
+    <string name="action_add_new_task_add">Dodaj</string>
+    <string name="action_add_new_task_cancel">Anuluj</string>
+    <string name="window_dialog"><u>Kontakt z autorem</u></string>
+     <string name="textviev_about_as"><p>Twórca aplikacji dołożył wszelkich starań, by aplikacja działania sprawnie \n i bezprobelomowo. \n\n
+    W razie jakich kolwiek problemów proszę o kontakt na podany adres poniżej: \n\n
+    Jan Kowalski \n Adres e-mail: jKowal@gmail.com \n Telefon: 123-456-789 \n\n
+    Dziękuję za korzystanie z aplikacji!</p></string>
+    <string name="login_reg_please_wait">Proszę czekać...</string>
+    <string name="login_reg_processing">Proces...</string>
+    <string name="proces_login_ok"><u>Zalogowano pomyślnie</u></string>
+    <string name="proces_register_ok"><u>Zarejestrowano pomyślnie</u></string>
+    <string name="chat_main_enter_your_name">Wprowadź twój nick:</string>
+    <string name="chat_main_ok">Ok</string>
+    <string name="chat_main_cancel">Anuluj</string>
+    <string name="widomList_add_task_not_empty">Pole nie może być puste</string>
+    <string name="WidomList_add_task_save_database">Zapisz do bazy</string>
+    <string name="title_input_dialog">Tytuł</string>
+    <string name="author_input_dialog">Autor</string>
+    <string name="description_input_dialog">Opis</string>
+    <string name="save_input_dialog">Zapisz</string>
+</resources>

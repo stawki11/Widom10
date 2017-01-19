@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "803222015520",
+    "firebase_url": "https://widom-1068d.firebaseio.com",
+    "project_id": "widom-1068d",
+    "storage_bucket": "widom-1068d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:803222015520:android:be497f47fcf1d2da",
+        "android_client_info": {
+          "package_name": "com.example.dianielm.widom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "803222015520-usta8uu9ji8g4i0jbhaj6b3m0aaqkifs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIZZyWATDUJCDjT8rj-v3-UIA6E13cgOQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
