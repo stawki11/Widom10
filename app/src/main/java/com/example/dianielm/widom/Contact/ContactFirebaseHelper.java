@@ -36,7 +36,7 @@ public class ContactFirebaseHelper {
         {
             try
             {
-                dbContact.child("Contact").push().setValue(contact);
+                dbContact.push().setValue(contact);
                 savedContact=true;
             }catch (DatabaseException e)
             {

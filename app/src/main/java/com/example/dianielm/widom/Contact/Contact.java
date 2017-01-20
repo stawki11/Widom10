@@ -6,7 +6,7 @@ package com.example.dianielm.widom.Contact;
 
 public class Contact {
 
-    String nameEditTextContact, descEditTextContact;
+    String nameEditTextContact, numberEditTextContact;
 
 
     public Contact() {
@@ -20,11 +20,11 @@ public class Contact {
         this.nameEditTextContact = nameTxtContact;
     }
 
-    public String getDescEditTextContact() {
-        return descEditTextContact;
+    public String getNumberEditTextContact() {
+        return numberEditTextContact;
     }
 
-    public void setDescEditTextContact(String descEditTextContact) {
-        this.descEditTextContact = descEditTextContact;
+    public void setNumberEditTextContact(String numberEditTextContact) {
+        this.numberEditTextContact = numberEditTextContact;
     }
 }

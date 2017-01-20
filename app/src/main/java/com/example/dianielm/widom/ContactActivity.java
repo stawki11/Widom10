@@ -24,7 +24,7 @@ public class ContactActivity extends AppCompatActivity {
     ContactFirebaseHelper helperContactActivity;
     ContactCustomAdapter adapterContactActivity;
     ListView lvContactActivity;
-    EditText nameEditTxtContact, descTxtContact;
+    EditText nameEditTxtContact, numberTxtContact;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +45,8 @@ public class ContactActivity extends AppCompatActivity {
         helperContactActivity.registerListener();
         adapterContactActivity = new ContactCustomAdapter(this, helperContactActivity.retrieveContact());
         lvContactActivity.setAdapter(adapterContactActivity);
+
+
     }
 
     //DISPLAY INPUT DIALOG
@@ -53,7 +55,7 @@ public class ContactActivity extends AppCompatActivity {
         d.setTitle("Save To Firebase");
         d.setContentView(R.layout.input_dialog_contact);
         nameEditTxtContact = (EditText) d.findViewById(R.id.nameEditTextContact);
-        descTxtContact = (EditText) d.findViewById(R.id.descEditTextContact);
+        numberTxtContact = (EditText) d.findViewById(R.id.numberEditTextContact);
         Button saveBtnContact = (Button) d.findViewById(R.id.saveBtnContact);
         //SAVE
         saveBtnContact.setOnClickListener(new View.OnClickListener() {
@@ -61,18 +63,18 @@ public class ContactActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //GET DATA
                 String nameContact = nameEditTxtContact.getText().toString();
-                String descContact = descTxtContact.getText().toString();
+                String descContact = numberTxtContact.getText().toString();
                 //SET DATA
                 Contact sContact = new Contact();
                 sContact.setNameEditTextContact(nameContact);
-                sContact.setDescEditTextContact(descContact);
+                sContact.setNumberEditTextContact(descContact);
                 //SIMPLE VALIDATION
                 if (nameContact != null && nameContact.length() > 0) {
                     //THEN SAVE
                     if (helperContactActivity.saveContact(sContact)) {
                         //IF SAVED CLEAR EDITXT
                         nameEditTxtContact.setText("");
-                        descTxtContact.setText("");
+                        numberTxtContact.setText("");
                     }
                 } else {
                     Toast.makeText(ContactActivity.this, "Name Must Not Be Empty", Toast.LENGTH_SHORT).show();

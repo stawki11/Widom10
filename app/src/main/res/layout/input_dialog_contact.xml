@@ -16,16 +16,16 @@
             android:inputType="textPersonName"
             android:ems="10"
             android:id="@+id/nameEditTextContact"
-            android:hint="@string/title_input_dialog"
+            android:hint="Name"
             android:padding="15dp" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:ems="10"
-            android:id="@+id/descEditTextContact"
-            android:hint="@string/description_input_dialog"
+            android:id="@+id/numberEditTextContact"
+            android:hint="Number"
             android:padding="15dp" />
 
         <Button
