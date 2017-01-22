@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        android:background="@drawable/background"
+
         <item
             android:id="@+id/nav_widom_list"
             android:icon="@drawable/ic_autorenew_black_24dp"

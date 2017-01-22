@@ -6,9 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="@drawable/background"
-    tools:openDrawer="start">
 
+    tools:openDrawer="start">
     <include
         layout="@layout/app_bar_widom_list"
         android:layout_width="match_parent"

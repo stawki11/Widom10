@@ -16,9 +16,14 @@ public class TaskFirebaseHelper {
     DatabaseReference dbTask;
     Boolean savedTask;
     ArrayList<Task> tasks=new ArrayList<>();
+
     /*
  Przekazanie referencji do bazy danych
-  */
+
+Zasadniczo to nasza klasa CRUD – od ang. create, read, update and delete
+Tutaj wykonujemy odczyt i zapis w bazie Firebase
+Wypełniamy ArrayList z obiektów moedlu
+     */
     public TaskFirebaseHelper(DatabaseReference dbTaskReference) {
         this.dbTask = dbTaskReference;
     }

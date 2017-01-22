@@ -161,7 +161,6 @@ public class WidomListActivity extends AppCompatActivity
         int id = item.getItemId();
         //Jeśli paseczki menu - to jest rozsuwamy
         if (id == R.id.nav_widom_list) {
-        ///Odświerzamy adapter = liste zadan
             adapterTaskActivity.notifyDataSetChanged();
         } else if (id == R.id.nav_add_task) {
             displayInputDialog();

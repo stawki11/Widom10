@@ -5,15 +5,13 @@
     android:layout_margin="5dp"
     card_view:cardCornerRadius="25dp"
     card_view:cardElevation="7dp"
-    android:background="@drawable/menu4"
     android:layout_height="180dp">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="1"
-        android:background="@drawable/background">
+        android:weightSum="1">
 
         <TextView
             android:layout_width="wrap_content"

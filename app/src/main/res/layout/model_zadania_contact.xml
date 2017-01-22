@@ -12,8 +12,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="107dp"
-        android:weightSum="1"
-        android:background="@drawable/background">
+        android:weightSum="1">
 
         <TextView
             android:layout_width="wrap_content"

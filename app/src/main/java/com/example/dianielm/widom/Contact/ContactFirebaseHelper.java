@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 /**
  * Created by Daniel on 16/01/2017.
+ *
+ *
  */
 
 public class ContactFirebaseHelper {
@@ -21,8 +23,13 @@ public class ContactFirebaseHelper {
     private ValueEventListener listener;
 
     /*
- Przekazanie referencji do bazy danych
+    Przekazanie referencji do bazy danych
+
+    Zasadniczo to nasza klasa CRUD – od ang. create, read, update and delete
+    Tutaj wykonujemy odczyt i zapis w bazie Firebase
+    Wypełniamy ArrayList z obiektów moedlu
   */
+
     public ContactFirebaseHelper(DatabaseReference dbTaskReference) {
         this.dbContact = dbTaskReference.child("Contact");
     }

@@ -1,6 +1,7 @@
 package com.example.dianielm.widom;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -44,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(i);
     }
+    
 
     //Metoda onClick na przycisku zaloguj
     public void btnUserLogin_Click(View v) {

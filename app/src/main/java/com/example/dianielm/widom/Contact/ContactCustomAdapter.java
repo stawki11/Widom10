@@ -23,6 +23,13 @@ import java.util.ArrayList;
 
 public class ContactCustomAdapter extends BaseAdapter {
 
+
+    /*
+     Gdy chcemy użyć w Androidzie pinową listę przeiwjanych elementów ListView musimy,
+    użyć adaptera do wyświetlania danych. ArrayAdapter przekształca ArrayList obiektów w polu i ładuje dane
+    do ListView
+     */
+
     Context cContact;
     ArrayList<Contact> contacts;
 
