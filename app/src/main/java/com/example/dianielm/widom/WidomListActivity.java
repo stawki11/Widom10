@@ -22,7 +22,6 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dianielm.widom.Task.Task;
@@ -32,11 +31,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
 
+import java.util.List;
+
 public class WidomListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     DatabaseReference dbTask;
-    TaskFirebaseHelper helperTaskActivity;
+    TaskFirebaseHelper dbTaskHelper;
     TaskCustomAdapter adapterTaskActivity;
     ListView lvTaskActivity;
     EditText nameEditTxtTask, authorEditTextTask, descTxtTask;
@@ -77,15 +78,25 @@ public class WidomListActivity extends AppCompatActivity
         });
 
         lvTaskActivity = (ListView) findViewById(R.id.lv);
-
+        //Adapter
+        adapterTaskActivity = new TaskCustomAdapter(this);
+        lvTaskActivity.setAdapter(adapterTaskActivity);
         //Inicjializacja bazy danych firebase
         dbTask = FirebaseDatabase.getInstance().getReference();
-        helperTaskActivity = new TaskFirebaseHelper(dbTask);
+        dbTaskHelper = new TaskFirebaseHelper(dbTask, new TaskFirebaseHelper.OnTaskLoadedListener() {
+            @Override
+            public void onTaskLoaded(List<Task> fetchedTasks) {
+                adapterTaskActivity.setTasks(fetchedTasks);
+                adapterTaskActivity.notifyDataSetChanged();
+            }
+        });
+        dbTaskHelper.registerListeners();
+    }
 
-        //Adapter
-        adapterTaskActivity = new TaskCustomAdapter(this, helperTaskActivity.retrieveTask());
-        lvTaskActivity.setAdapter(adapterTaskActivity);
-
+    @Override
+    protected void onDestroy() {
+        dbTaskHelper.unregisterListeners();
+        super.onDestroy();
     }
 
     //Metoda wywoływana gdy użytkownik wcisną przycisk wstecz
@@ -220,13 +231,11 @@ public class WidomListActivity extends AppCompatActivity
                 //Prosta walidacja
                 if (name != null && name.length() > 0) {
                     //Jeśli tak - zapis
-                    if (helperTaskActivity.saveTask(s)) {
+                    if (dbTaskHelper.saveTask(s)) {
                         //Jeśli zostało zapisane, wyczyść editText
                         nameEditTxtTask.setText("");
                         authorEditTextTask.setText("");
                         descTxtTask.setText("");
-                        adapterTaskActivity = new TaskCustomAdapter(WidomListActivity.this, helperTaskActivity.retrieveTask());
-                        lvTaskActivity.setAdapter(adapterTaskActivity);
                     }
                 } else {
                     Toast.makeText(WidomListActivity.this, R.string.widomList_add_task_not_empty, Toast.LENGTH_SHORT).show();

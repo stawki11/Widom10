@@ -1,85 +1,87 @@
 package com.example.dianielm.widom.Task;
 
+import android.support.annotation.Nullable;
+
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseException;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Daniel on 14/01/2017.
  */
 
 public class TaskFirebaseHelper {
-    DatabaseReference dbTask;
-    Boolean savedTask;
-    ArrayList<Task> tasks=new ArrayList<>();
+    public static final String taskNodeName = "Task";
+    DatabaseReference databaseReference;
+    List<Task> tasksCache = new ArrayList<>();
+    private final OnTaskLoadedListener taskLoadedListener;
+    private ValueEventListener eventListener;
 
     /*
- Przekazanie referencji do bazy danych
+     Przekazanie referencji do bazy danych
 
-Zasadniczo to nasza klasa CRUD – od ang. create, read, update and delete
-Tutaj wykonujemy odczyt i zapis w bazie Firebase
-Wypełniamy ArrayList z obiektów moedlu
+    Zasadniczo to nasza klasa CRUD – od ang. create, read, update and delete
+    Tutaj wykonujemy odczyt i zapis w bazie Firebase
+    Wypełniamy ArrayList z obiektów moedlu
      */
-    public TaskFirebaseHelper(DatabaseReference dbTaskReference) {
-        this.dbTask = dbTaskReference;
+    public TaskFirebaseHelper(DatabaseReference firebaseRootReference, @Nullable OnTaskLoadedListener listener) {
+        this.databaseReference = firebaseRootReference.child(taskNodeName);
+        this.taskLoadedListener = listener;
     }
-    //Zapisz jeśli nie jest nullem
-    public Boolean saveTask(Task task)
-    {
-        if(task==null)
-        {
-            savedTask=false;
-        }else
-        {
-            try
-            {
-                dbTask.child("Task").push().setValue(task);
-                savedTask=true;
-            }catch (DatabaseException e)
-            {
-                e.printStackTrace();
-                savedTask=false;
-            }
-        }
-        return savedTask;
-    }
-    //Implementacja pobrania danych i wypełnienie arraylist
-    private void fetchDataTask(DataSnapshot dataSnapshot)
-    {
-        tasks.clear();
-        for (DataSnapshot ds : dataSnapshot.getChildren())
-        {
-            Task task=ds.getValue(Task.class);
-            tasks.add(task);
-        }
-    }
-    //Pobieranie danych
-    //Po dodaniu addChildEventListener wszystkie puste metody się wygenerowały
-    public ArrayList<Task> retrieveTask()
-    {
-        dbTask.addChildEventListener(new ChildEventListener() {
+
+    public void registerListeners() {
+        unregisterListeners();
+        eventListener = this.databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                fetchDataTask(dataSnapshot);
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                persistTaskData(dataSnapshot);
+                if (taskLoadedListener != null) {
+                    taskLoadedListener.onTaskLoaded(tasksCache);
+                }
             }
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-                fetchDataTask(dataSnapshot);
-            }
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-            }
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-            }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                // no operation
             }
         });
-        return tasks;
+    }
+
+    public void unregisterListeners() {
+        if (eventListener != null) {
+            this.databaseReference.removeEventListener(eventListener);
+        }
+    }
+
+    //Zapisz jeśli nie jest nullem
+    public Boolean saveTask(Task task) {
+        if (task != null) {
+            try {
+                databaseReference.push().setValue(task);
+                return true;
+            } catch (DatabaseException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+    //Implementacja pobrania danych i wypełnienie arraylist
+    private void persistTaskData(DataSnapshot dataSnapshot) {
+        tasksCache.clear();
+        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+            Task task = ds.getValue(Task.class);
+            tasksCache.add(task);
+        }
+    }
+
+    public static interface OnTaskLoadedListener {
+        void onTaskLoaded(List<Task> fetchedTasks);
     }
 }

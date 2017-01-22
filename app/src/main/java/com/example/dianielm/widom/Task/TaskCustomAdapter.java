@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.dianielm.widom.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Daniel on 14/01/2017.
@@ -26,11 +27,15 @@ public class TaskCustomAdapter extends BaseAdapter {
      */
 
     Context cTask;
-    ArrayList<Task> tasks;
+    ArrayList<Task> tasks = new ArrayList<>();
     //Konstruktor
-    public TaskCustomAdapter(Context cTask, ArrayList<Task> tasks) {
+    public TaskCustomAdapter(Context cTask) {
         this.cTask = cTask;
-        this.tasks = tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks.clear();
+        this.tasks.addAll(tasks);
     }
 
     @Override
