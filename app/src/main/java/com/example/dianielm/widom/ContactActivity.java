@@ -1,7 +1,13 @@
 package com.example.dianielm.widom;
 
+import android.*;
 import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -18,7 +24,8 @@ import com.example.dianielm.widom.Contact.ContactFirebaseHelper;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class ContactActivity extends AppCompatActivity {
+public class ContactActivity extends AppCompatActivity implements PermissionChief {
+    private static final int CALL_PHONE_REQUEST = 18852; //unique request id
 
     DatabaseReference dbContact;
     ContactFirebaseHelper helperContactActivity;
@@ -46,7 +53,31 @@ public class ContactActivity extends AppCompatActivity {
         adapterContactActivity = new ContactCustomAdapter(this, helperContactActivity.retrieveContact());
         lvContactActivity.setAdapter(adapterContactActivity);
 
+        if (!hasNeededPermissions()) {
+            requestPermission();
+        }
+    }
 
+    @Override
+    public void requestPermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.CALL_PHONE)) {
+            new AlertDialog.Builder(this)
+                    .setMessage("Dostęp do telefonu jest niezbędny do działania aplikacji")
+                    .setPositiveButton("Nadaj uprawnienia", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    ActivityCompat.requestPermissions(ContactActivity.this, new String[] {android.Manifest.permission.CALL_PHONE}, CALL_PHONE_REQUEST);
+                }
+            })
+                    .setNegativeButton("Anuluj", null)
+                    .show();
+        } else {
+            ActivityCompat.requestPermissions(this, new String[] {android.Manifest.permission.CALL_PHONE}, CALL_PHONE_REQUEST);
+        }
+    }
+    @Override
+    public boolean hasNeededPermissions() {
+        return ActivityCompat.checkSelfPermission(this, android.Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED;
     }
 
     //DISPLAY INPUT DIALOG

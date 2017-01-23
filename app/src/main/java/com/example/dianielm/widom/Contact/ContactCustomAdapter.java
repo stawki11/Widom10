@@ -13,6 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.dianielm.widom.PermissionChief;
 import com.example.dianielm.widom.R;
 
 import java.util.ArrayList;
@@ -72,18 +73,15 @@ public class ContactCustomAdapter extends BaseAdapter {
                 Toast.makeText(cContact, contact.getNameEditTextContact(), Toast.LENGTH_SHORT).show();
 
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
-                callIntent.setData(Uri.parse((contact.getNumberEditTextContact())));
+                callIntent.setData(Uri.parse(("tel:" + contact.getNumberEditTextContact())));
 
-                if (ActivityCompat.checkSelfPermission(cContact, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
+                PermissionChief permissionChief = (PermissionChief) cContact;
+                if (!permissionChief.hasNeededPermissions()) {
+                    permissionChief.requestPermission();
                     return;
                 }
+                //lint disabled - it's already managed by PermissionChief#hasNeededPermissions()
+                //noinspection MissingPermission
                 cContact.startActivity(callIntent);
         }
         });
